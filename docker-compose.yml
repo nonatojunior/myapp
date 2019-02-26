@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - /home/nonatojr/Projetos/dockerizando/myapp/:/myapp
+    ports:
+      - "3009:3000"
+    depends_on:
+      - db
+  db:
+    image: postgres:9.4
+    volumes:
+      - /home/nonatojr/Projetos/dockerizando/db/:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      # - POSTGRES_PORT=5432
+      - POSTGRES_DB=myapp
+    ports:
+      - 5433:5432
+
+
+# comandos para startar o projeto
+# docker-compose build
+# docker-compose up
+# docker-compose down
